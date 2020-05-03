@@ -48,8 +48,7 @@ void State::queueMonitorLoop()
         } else
             conn->get_notifs();
 
-        if (auto lowestId = buildsAdded.get()) {
-            lastBuildId = std::min(lastBuildId, static_cast<unsigned>(std::stoul(*lowestId) - 1));
+        if (buildsAdded.get()) {
             printMsg(lvlTalkative, "got notification: new builds added to the queue");
         }
         if (buildsRestarted.get()) {
